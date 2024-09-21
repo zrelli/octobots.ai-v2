@@ -27,19 +27,11 @@
     "widgets": {},
     "plugins": [
      
-      {
-        "name": "integrations"
-      },
+     
       
-      {
-        "name": "inbox"
-      },
+    
       {
         "name": "engages"
-      },
-      {
-        "name": "automations"
-
       },
       
       {
