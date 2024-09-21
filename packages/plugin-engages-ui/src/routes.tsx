@@ -6,7 +6,7 @@ const routes = () => {
   return (
     <React.Fragment>
       <EngageRoutes />
-      {/* <SmsDeliveriesRoutes /> */}
+      <SmsDeliveriesRoutes />
     </React.Fragment>
   );
 };
