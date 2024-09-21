@@ -35,7 +35,6 @@ const EngageConfigs = asyncComponent(
 );
 
 const EngageList = () => {
-  return <div>TEST COMPONENT</div>
   return <MessageList />;
 };
 
@@ -63,7 +62,7 @@ const routes = () => {
     <Routes>
       <Route key='/campaigns' path='/campaigns' element={<EngageList />} />
 
-      {/* <Route
+      <Route
         key='/campaigns/create'
         path='/campaigns/create'
         element={<CreateForm />}
@@ -85,7 +84,7 @@ const routes = () => {
         key='/settings/campaign-configs/'
         path='/settings/campaign-configs/'
         element={<EngageConfigs />}
-      /> */}
+      />
     </Routes>
   );
 };

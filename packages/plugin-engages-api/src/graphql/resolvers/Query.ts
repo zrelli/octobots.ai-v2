@@ -412,6 +412,6 @@ requireLogin(engageQueries, "engageMessageDetail");
 requireLogin(engageQueries, "engageEmailPercentages");
 requireLogin(engageQueries, "engageLogs");
 
-checkPermission(engageQueries, "engageMessages", "showEngagesMessages", []);
+// checkPermission(engageQueries, "engageMessages", "showEngagesMessages", []);
 
 export default engageQueries;
