@@ -59,7 +59,7 @@ class SignIn extends React.Component<Props> {
     return (
       <AuthBox>
         <img src={this.renderLogo()} alt="erxes" />
-        <h2>{__('Welcome!')}</h2>
+        <h2>Octobots Login Page</h2>
         <p>{__('Please sign in to your account to continue')}</p>
         <Form renderContent={this.renderContent} />
         <Link to="/forgot-password">{__('Forgot password?')}</Link>
