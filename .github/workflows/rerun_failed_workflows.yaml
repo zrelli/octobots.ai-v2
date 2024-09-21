@@ -1,8 +1,15 @@
 name: Rerun Failed Workflows
 
+# on:
+#   workflow_dispatch: # Allows you to manually trigger this workflow from the GitHub Actions tab
 on:
-  workflow_dispatch: # Allows you to manually trigger this workflow from the GitHub Actions tab
-
+    push:
+      branches:
+        - dev
+        - master
+        - rc
+        - v2
+  
 jobs:
   rerun_failed_workflows:
     runs-on: ubuntu-latest
