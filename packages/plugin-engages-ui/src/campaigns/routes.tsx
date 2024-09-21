@@ -60,10 +60,9 @@ const Statistic = () => {
 const routes = () => {
   return (
     <Routes>
-      {/* <Route key='/campaigns' path='/campaigns' element={<EngageList />} /> */}
-      <Route key='/campaigns' path='/campaigns' element={<CreateForm />} />
+      <Route key='/campaigns' path='/campaigns' element={<EngageList />} />
 
-      <Route
+      {/* <Route
         key='/campaigns/create'
         path='/campaigns/create'
         element={<CreateForm />}
@@ -85,7 +84,7 @@ const routes = () => {
         key='/settings/campaign-configs/'
         path='/settings/campaign-configs/'
         element={<EngageConfigs />}
-      />
+      /> */}
     </Routes>
   );
 };
