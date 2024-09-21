@@ -5,10 +5,8 @@ name: Rerun Failed Workflows
 on:
     push:
       branches:
-        - dev
-        - master
-        - rc
-        - v2
+        - devvvvv
+      
   
 jobs:
   rerun_failed_workflows:
