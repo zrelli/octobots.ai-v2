@@ -81,18 +81,20 @@ jobs:
           cd packages/plugin-engages-ui
           yarn build
           cp -r ./src/locales/ ./dist/locales 2>/dev/null || true
+          sshpass -p "${{ secrets.PASSWORD }}" scp -r -o StrictHostKeyChecking=no  ./dist/*  ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home/octobot/erxes/plugin-uis/plugin-engages-ui
 
-      - name: Configure AWS credentials
-        if: github.event_name == 'push' && ( github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/dev' || github.ref == 'v2' || github.ref == 'refs/heads/v2')
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
 
-      - name: Deploy
-        if: github.event_name == 'push' && ( github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/dev' || github.ref == 'v2' || github.ref == 'refs/heads/v2')
-        run: |
-          tar -cf build.tar --directory=packages/plugin-engages-ui/dist .
-          cp build.tar packages/plugin-engages-ui/dist
-          aws s3 sync packages/plugin-engages-ui/dist s3://erxes-${GITHUB_REF#refs/heads/}-plugins/uis/plugin-engages-ui --delete
+      # - name: Configure AWS credentials
+      #   if: github.event_name == 'push' && ( github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/dev' || github.ref == 'v2' || github.ref == 'refs/heads/v2')
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: us-west-2
+
+      # - name: Deploy
+      #   if: github.event_name == 'push' && ( github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/dev' || github.ref == 'v2' || github.ref == 'refs/heads/v2')
+      #   run: |
+      #     tar -cf build.tar --directory=packages/plugin-engages-ui/dist .
+      #     cp build.tar packages/plugin-engages-ui/dist
+      #     aws s3 sync packages/plugin-engages-ui/dist s3://erxes-${GITHUB_REF#refs/heads/}-plugins/uis/plugin-engages-ui --delete

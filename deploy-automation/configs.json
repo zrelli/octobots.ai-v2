@@ -1,0 +1,51 @@
+{
+    "jwt_token_secret": "ZDwYz579x9",
+    "image_tag": "dev",
+    "db_server_address": "",
+    "domain": "https://octobots.ai",
+    "main_api_domain": "http://octobots.ai/gateway",
+      "secondary_server_address": "",
+    "redis": {
+      "password": "evd7HouUpL"
+    },
+    "installer": {},
+  "essyncer": {},
+  "elasticsearch" : {},
+  
+  
+    "mongo": {
+      "username": "erxes",
+      "password": "GOgpEe4Pyu",
+      "replication": true
+    },
+    "rabbitmq": {
+      "cookie": "",
+      "user": "erxes",
+      "pass": "usiCF7Z6hT",
+      "vhost": ""
+    },
+    "widgets": {},
+    "plugins": [
+     
+      {
+        "name": "integrations"
+      },
+      
+      {
+        "name": "inbox"
+      },
+      {
+        "name": "engages"
+      },
+      {
+        "name": "automations"
+
+      },
+      
+      {
+        "name": "tasks"
+
+      }
+    ]
+  }
+  

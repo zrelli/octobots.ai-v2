@@ -48,4 +48,4 @@ jobs:
           cd exm-web
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
           DOCKER_BUILDKIT=1 docker build -t erxes/exm:${GITHUB_REF#refs/heads/} -f Dockerfile .
-          docker push erxes/exm:${GITHUB_REF#refs/heads/}
+          docker push octobots/exm:${GITHUB_REF#refs/heads/}

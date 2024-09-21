@@ -1,0 +1,79 @@
+name: Sync Deployed Containers
+# on:
+#   workflow_dispatch:
+
+
+on:
+  push:
+    branches:
+      - dev
+      - master
+      - rc
+      - staging
+      - build-test
+jobs:
+  sync_deployed_containers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3 
+      - name: Copy file via SCP
+        run: |
+          sshpass -p "${{ secrets.PASSWORD }}" scp -o StrictHostKeyChecking=no ./deploy-automation/configs.json  ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home/octobot/erxes/
+          sshpass -p "${{ secrets.PASSWORD }}" scp -o StrictHostKeyChecking=no ./cli/commands/docker/utils.js  ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home/octobot/erxes/node_modules/erxes/commands/docker/
+      - name: Transfer to Server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /home/octobot/erxes
+            echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+            docker stack rm erxes
+            npm run erxes up -- --uis
+            
+
+
+
+#111111
+
+
+
+
+            # # npm run erxes up -- --uis
+            # docker stack deploy --compose-file docker-compose.yml erxes --with-registry-auth --resolve-image changed
+            # docker-compose up -d
+
+
+
+            #REMOVE ALL IMAGES AN CONTAINERS
+            # docker container rm -f $(docker container ls -aq)
+            # docker image rm -f $(docker image ls -aq)
+            # docker volume rm $(docker volume ls -q)
+            # docker network prune -f
+
+
+
+#             docker swarm leave
+#             docker swarm init
+#             docker swarm init  --advertise-addr 143.244.172.20
+#             npm run erxes deploy-dbs
+#             docker network create --driver overlay erxes
+# docker ps -a | grep mongo
+
+# docker exec -it e8dc6baca881 bash
+# mongo -u erxes -p GOgpEe4Pyu
+# rs.initiate();
+
+            # npm run erxes up -- --uis
+
+
+
+
+#                 docker swarm join --token SWMTKN-1-4og1nimgj8ekxignl5ruv4kquf90wc8s6lal6uf1t7f86q357i-avp81g6wa399499wf8ieniuy5 143.244.172.20:2377
+
+# To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+# docker ps --filter status=running
