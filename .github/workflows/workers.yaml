@@ -52,3 +52,4 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
           docker buildx build -t octobots/workers:${GITHUB_REF#refs/heads/} -f Dockerfile .
           docker push octobots/workers:${GITHUB_REF#refs/heads/}
+#1
